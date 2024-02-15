@@ -15,14 +15,14 @@ This repository is for IPFS Worker Node.
 2. Run the container
 
    ```bash
-   docker run --name ipfs_worker_container_n1 -e MANAGER_IPFS_ID=<manager_ipfs_id> -e MANAGER_IP_ADDRESS=<manager_ip_address> -d ipfs_worker
+   docker run --name <name> -e MANAGER_IPFS_ID=<manager_ipfs_id> -e MANAGER_IP_ADDRESS=<manager_ip_address> -d ipfs_worker
    ```
 
    if we want to expose the port, we can add for example `-p 4001:4001 -p 5001:5001 -p 8080:8080` to the command, but on ipfs config we are not exposed the API server (`:5001`) to the public.
 
 3. Exec into the container
    ```bash
-   docker exec -it ipfs_worker_container_n1 /bin/sh
+   docker exec -it <name> /bin/sh
    ```
 4. Start the ipfs daemon
    ```bash
