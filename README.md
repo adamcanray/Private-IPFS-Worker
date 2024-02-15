@@ -18,7 +18,20 @@ This repository is for IPFS Worker Node.
    docker run --name <name> -e MANAGER_IPFS_ID=<manager_ipfs_id> -e MANAGER_IP_ADDRESS=<manager_ip_address> -d ipfs_worker
    ```
 
-   if we want to expose the port, we can add for example `-p 4001:4001 -p 5001:5001 -p 8080:8080` to the command, but on ipfs config we are not exposed the API server (`:5001`) to the public.
+   > we can get the `MANAGER_IPFS_ID` and `MANAGER_IP_ADDRESS` from the manager node:
+
+   ```bash
+   <!-- go to the manager node terminal -->
+   docker exec -it <name> /bin/sh
+
+   <!-- below command will show detail in json structure, just copy the `ID` -->
+   ipfs id
+
+   <!-- below command will show interface config, copy the ip from eth0 (or other interface) -->
+   ifconfig
+   ```
+
+   > if we want to expose the port, we can add for example `-p 4001:4001 -p 5001:5001 -p 8080:8080` to the command, but on ipfs config we are not exposed the API server (`:5001`) to the public.
 
 ## Addition
 
