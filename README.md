@@ -20,27 +20,34 @@ This repository is for IPFS Worker Node.
 
    if we want to expose the port, we can add for example `-p 4001:4001 -p 5001:5001 -p 8080:8080` to the command, but on ipfs config we are not exposed the API server (`:5001`) to the public.
 
-3. Exec into the container
-   ```bash
-   docker exec -it <name> /bin/sh
-   ```
-4. Start the ipfs daemon
-   ```bash
-   rc-status -a
-   rc-service ipfs start
-   touch /run/openrc/softlevel
-   rc-service ipfs restart
-   rc-update add ipfs default
-   sleep 1
-   rc-status -a
-   ```
-
 ## Addition
 
+### About project
+
 This project is running well with alphine linux with arm base (`linux/arm64/v8`), if you run this project using different distribution, maybe you should adjust some scripts or service config (ex: `services/ipfs`, etc).
+
+### Porject Debugging
+
+If the ipfs daemon is not running, we can start it manually for each node with `rc-service ipfs start` command. First, we should exec into the container
+
+```bash
+docker exec -it <name> /bin/sh
+```
+
+then start the ipfs daemon.
+
+```bash
+rc-status -a
+rc-service ipfs start
+touch /run/openrc/softlevel
+rc-service ipfs restart
+rc-update add ipfs default
+sleep 1
+rc-status -a
+```
 
 ## Notes
 
 - In [previous](https://github.com/adamcanray/Private-IPFS-Cluster-Data-Replication), manager and worker project is in one code base, we run with docker compose to simplify the automation, since currently the worker project is not on one code base anymore, we should run it in some steps (ex: running worker node manually, then run worker nodes and pointing it to the worker manually), see [Run](/#Run) section above.
 - The `swarm.key`is should be confidential (generated once from manager).
-- do step 2-4 on [Run](/#Run) section above for running other worker nodes.
+- do step 2 on [Run](/#Run) section above for running other worker nodes.
